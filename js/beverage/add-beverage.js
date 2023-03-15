@@ -43,5 +43,5 @@ function getData() {
 function showNotification() {
     let beverageAlert = $("#beverage-alert");
     beverageAlert.toggle();
-    setTimeout(() => ingredientAlert.toggle(), 5000);
+    setTimeout(() => beverageAlert.toggle(), 5000);
 }
