@@ -36,9 +36,25 @@ orderForm.submit(event => {
  */
 function getOrderData() {
     let ingredients = [];
-    $.each($("input[name='ingredients']:checked"), function (el) {
+    $.each($("input[name='ingredients']:checked"), function () {
         ingredients.push($(this).val());
     });
+
+    let beverages = [];
+    $.each($("input[name='beverages']:checked"), function () {
+        let beverageSelected = ($(this).val());
+        let amountSelected = $(this).siblings("select[name='beverage-amount']").val();
+        let selectedAmount = amountSelect.find('option:selected').val();
+
+        if (selectedAmount !== 'Choose amount') {
+            let beverageObj = {
+                _id: beverageSelected,
+                amount: parseInt(amountSelected)
+            };
+            beverages.push(beverageObj);
+        }
+    });
+
 
     return {
         client_name: $("input[name='name']").val(),
@@ -46,7 +62,8 @@ function getOrderData() {
         client_address: $("input[name='address']").val(),
         client_phone: $("input[name='phone']").val(),
         size_id: $("input[name='size']:checked").val(),
-        ingredients
+        ingredients,
+        beverages
     };
 }
 
