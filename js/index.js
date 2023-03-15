@@ -43,13 +43,13 @@ function getOrderData() {
     let beverages = [];
     $.each($("input[name='beverages']:checked"), function () {
         let beverageSelected = ($(this).val());
-        let amountSelected = $(this).siblings("select[name='beverage-amount']").val();
-        let selectedAmount = amountSelect.find('option:selected').val();
+        let selectAmountInput = $(this).siblings("select[name='beverage-amount']").val();
+        let selectedAmount = selectAmountInput.find('option:selected').val();
 
         if (selectedAmount !== 'Choose amount') {
             let beverageObj = {
                 _id: beverageSelected,
-                amount: parseInt(amountSelected)
+                amount: parseInt(selectedAmount)
             };
             beverages.push(beverageObj);
         }
