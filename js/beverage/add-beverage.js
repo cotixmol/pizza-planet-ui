@@ -29,7 +29,7 @@ beverageForm.submit(event => {
 /**
  * Gets the order data with JQuery
  */
-function getData() {
+function getBeverageData() {
 
     return {
         name: $("input[name='name']").val(),
