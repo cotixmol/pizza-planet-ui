@@ -53,7 +53,7 @@
 
     <div class="container">
       <div class="jumbotron">
-        <div id="sizes-list">
+        <div id="beverages-list">
           <h2 class="text-center">Beverages</h2>
           <table id="beverages" class="table bg-white table-bordered table-hover">
             <thead class="thead-dark">
@@ -74,14 +74,14 @@
       </div>
     </div>
 
-    <template id="size-item-template">
+    <template id="beverage-item-template">
       <tr class="d-flex">
         <td class="col-2 text-center">{{_id}}</td>
         <td class="col-4">{{name}}</td>
         <td class="col-3">${{price}}</td>
         <td class="col-3 text-center">
           <div class="text-center">
-            <a class="btn btn-success btn-sm update-size" href="/app/beverage/update-beverage.html?_id={{_id}}"
+            <a class="btn btn-success btn-sm update-beverage" href="/app/beverage/update-beverage.html?_id={{_id}}"
               >Update</a
             >
           </div>
@@ -112,6 +112,6 @@
       crossorigin="anonymous"
     ></script>
 
-    <script src="/js/beverage/beverages.js"></script>
+    <script src="/js/beverage/beverage.js"></script>
   </body>
 </html>
