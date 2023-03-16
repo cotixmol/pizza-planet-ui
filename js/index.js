@@ -23,7 +23,6 @@ function postOrder(order) {
  */
 let orderForm = $("#order-form");
 orderForm.submit(event => {
-
     let order = getOrderData();
     postOrder(order);
 
@@ -43,18 +42,17 @@ function getOrderData() {
     let beverages = [];
     $.each($("input[name='beverages']:checked"), function () {
         let beverageSelected = ($(this).val());
-        let selectAmountInput = $(this).siblings("select[name='beverage-amount']").val();
-        let selectedAmount = selectAmountInput.find('option:selected').val();
+        let beverageQuantity = $(this).siblings("select[name='beverage-amount']").val();
 
-        if (selectedAmount !== 'Choose amount') {
+
+        if (beverageQuantity !== 'Choose amount') {
             let beverageObj = {
                 _id: beverageSelected,
-                amount: parseInt(selectedAmount)
+                amount: parseInt(beverageQuantity)
             };
             beverages.push(beverageObj);
         }
     });
-
 
     return {
         client_name: $("input[name='name']").val(),
