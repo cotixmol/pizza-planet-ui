@@ -48,7 +48,7 @@ function getOrderData() {
         if (beverageQuantity !== 'Choose amount') {
             let beverageObj = {
                 _id: beverageSelected,
-                amount: parseInt(beverageQuantity)
+                quantity: beverageQuantity
             };
             beverages.push(beverageObj);
         }

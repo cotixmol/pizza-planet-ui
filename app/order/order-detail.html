@@ -90,27 +90,56 @@
       <!-- SIZE AND INGREDIENTS -->
 
       <table class="table bg-white table-bordered">
+
         <thead class="thead-dark">
           <tr>
-            <th class="w-50">Size</th>
-            <th class="w-50">Ingredients</th>
+            <th class="w-100">Size</th>
           </tr>
         </thead>
+
         <tbody>
           <tr>
             <td>
               <p id="size">{{size.name}} - ${{size.price}}</p>
             </td>
+          </tr>
+        </tbody>
+
+        <thead class="thead-dark">
+          <tr>
+            <th class="w-100">Ingredients</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <tr>
             <td id="ingredients">
-              {{#detail}}
-              <p>{{ingredient.name}} - ${{ingredient_price}}</p>
-              {{/detail}}
+              {{#ingredientsDetail}}
+              <p>{{ingredient.name}} - ${{ingredient.price}}</p>
+              {{/ingredientsDetail}}
+            </td>
+          </tr>
+        </tbody>
+
+        <thead class="thead-dark">
+          <tr>
+            <th>Beverages</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td id="beverages">
+              {{#beveragesDetail}}
+              <p>{{beverage.name}} - ${{beverage.price}} - Quantity: {{beverage_quantity}}</p>
+              {{/beveragesDetail}}
             </td>
           </tr>
           <tr class="table-active">
             <th id="total" class="text-right" colspan="2">Total: ${{total_price}}</th>
           </tr>
         </tbody>
+
       </table>
     </template>
 
