@@ -23,7 +23,6 @@ function postOrder(order) {
  */
 let orderForm = $("#order-form");
 orderForm.submit(event => {
-
     let order = getOrderData();
     postOrder(order);
 
@@ -36,8 +35,23 @@ orderForm.submit(event => {
  */
 function getOrderData() {
     let ingredients = [];
-    $.each($("input[name='ingredients']:checked"), function (el) {
+    $.each($("input[name='ingredients']:checked"), function () {
         ingredients.push($(this).val());
+    });
+
+    let beverages = [];
+    $.each($("input[name='beverages']:checked"), function () {
+        let beverageSelected = ($(this).val());
+        let beverageQuantity = $(this).siblings("select[name='beverage-amount']").val();
+
+
+        if (beverageQuantity !== 'Choose amount') {
+            let beverageObj = {
+                _id: beverageSelected,
+                quantity: beverageQuantity
+            };
+            beverages.push(beverageObj);
+        }
     });
 
     return {
@@ -46,7 +60,8 @@ function getOrderData() {
         client_address: $("input[name='address']").val(),
         client_phone: $("input[name='phone']").val(),
         size_id: $("input[name='size']:checked").val(),
-        ingredients
+        ingredients,
+        beverages
     };
 }
 
@@ -82,6 +97,16 @@ function fetchOrderSizes() {
         });
 }
 
+function fetchOrderBeverages() {
+    fetch('http://127.0.0.1:5000/beverage/')
+        .then(response => response.json())
+        .then(sizes => {
+            let rows = sizes.map(element => createBeveragesTemplate(element));
+            let table = $("#beverages tbody");
+            table.append(rows);
+        });
+}
+
 function createIngredientTemplate(ingredient) {
     let template = $("#ingredients-template")[0].innerHTML;
     return Mustache.render(template, ingredient);
@@ -92,9 +117,15 @@ function createSizeTemplate(size) {
     return Mustache.render(template, size);
 }
 
+function createBeveragesTemplate(beverage) {
+    let template = $("#beverages-template")[0].innerHTML;
+    return Mustache.render(template, beverage);
+}
+
 function loadInformation() {
     fetchIngredients();
     fetchOrderSizes();
+    fetchOrderBeverages();
 }
 
 
